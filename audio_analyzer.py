@@ -9,10 +9,33 @@ import soundfile as sf
 from collections import deque
 from groq import Groq
 import sounddevice as sd
+import os
+from dotenv import load_dotenv
 
-# ===== API KEYS =====
+
+# 1. Сначала загружаем переменные из файла .env
+# force_reload=True заставляет библиотеку перечитать файл, даже если он был в кэше
+load_dotenv(dotenv_path=os.path.join(os.path.dirname(__file__), '.env'), override=True)
+
+# 2. Только ПОСЛЕ этого получаем значения
 DEEPGRAM_API_KEY = os.getenv("DEEPGRAM_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+
+# 3. Проверка (если ключей нет, программа сразу скажет об этом и остановится)
+if not DEEPGRAM_API_KEY or not GROQ_API_KEY:
+    print("ОШИБКА: Ключи не загружены!")
+    print(f"DEEPGRAM: {DEEPGRAM_API_KEY}")
+    print(f"GROQ: {GROQ_API_KEY}")
+    print("Проверь файл .env в папке D:\\")
+    sys.exit(1)
+
+# 4. Инициализация клиента
+from groq import Groq
+client_groq = Groq(api_key=GROQ_API_KEY, timeout=30.0)
+
+# ... дальше идут остальные импорты (sounddevice, numpy и т.д.) ...
+
+
 
 client_groq = Groq(api_key=GROQ_API_KEY, timeout=30.0)
 
