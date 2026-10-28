@@ -1,0 +1,6 @@
+sounddevice
+numpy
+soundfile
+requests
+groq
+python-dotenv
