@@ -33,12 +33,6 @@ if not DEEPGRAM_API_KEY or not GROQ_API_KEY:
 from groq import Groq
 client_groq = Groq(api_key=GROQ_API_KEY, timeout=30.0)
 
-# ... дальше идут остальные импорты (sounddevice, numpy и т.д.) ...
-
-
-
-client_groq = Groq(api_key=GROQ_API_KEY, timeout=30.0)
-
 # ===== SETTINGS =====
 SAMPLE_RATE = 16000
 VAD_THRESHOLD = 0.015
